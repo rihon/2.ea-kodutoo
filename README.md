@@ -1,7 +1,7 @@
 # 2. kodutöö – kirjutamise mängu täiendamine
 
 Riho Noormets
-
+Petrik Sarri
 
 ### Tähtpäev 26.03.2018 23:59
 

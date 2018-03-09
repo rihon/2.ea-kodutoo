@@ -66,6 +66,10 @@ TYPER.prototype = {
 
     this.word = new Word(wordFromArray, this.canvas, this.ctx)
   },
+  
+  addScore: function (){
+	  document.getElementById("score").innerHTML="Läbi kirjutatud sõnade arv"+this.guessedWords;
+  },
 
   keyPressed: function (event) {
     const letter = String.fromCharCode(event.which)
@@ -75,6 +79,7 @@ TYPER.prototype = {
 
       if (this.word.left.length === 0) {
         this.guessedWords += 1
+		this.addScore()
 
         this.generateWord()
       }
@@ -83,6 +88,9 @@ TYPER.prototype = {
     }
   }
 }
+
+
+
 
 /* WORD */
 const Word = function (word, canvas, ctx) {

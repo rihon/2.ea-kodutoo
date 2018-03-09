@@ -3,6 +3,11 @@
 Riho Noormets
 Petrik Sarri
 
+add
+commit
+fetch
+push
+
 ### Tähtpäev 26.03.2018 23:59
 
 ## Nõuded

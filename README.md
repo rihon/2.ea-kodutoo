@@ -19,11 +19,11 @@ push
     * skoori moodustamise ja lisatud funktsionaalsuste tekstipõhist kirjeldust.
 1. Mängu on lisatud täiendavad funktsionaalsused:  
     * eraldi on mängu tutvustav leht, kus kirjeldatakse mängu, saab sisestada mängija nime ning alustada mängu (ühe-lehe-rakenduse stiilis); 
-    * mängijate kohta hoitakse meeles ja salvestakse skoor, nt kasutades [localStorage](https://www.w3schools.com/html/html5_webstorage.asp)'it; 
-    * skoori arvutus on lahendatud keerulisemalt kui seda on juba olemasolev arvatud sõnade loetlemine; 
-    * eraldi näidatakse välja 10 parima mängija skoori (brauseri põhjal kui kasutate localStorage'it); 
+    Riho- mängijate kohta hoitakse meeles ja salvestakse skoor, nt kasutades [localStorage](https://www.w3schools.com/html/html5_webstorage.asp)'it; 
+    Riho- skoori arvutus on lahendatud keerulisemalt kui seda on juba olemasolev arvatud sõnade loetlemine; 
+    Petrik- eraldi näidatakse välja 10 parima mängija skoori (brauseri põhjal kui kasutate localStorage'it); 
     * mängule on lisatud mõni lisafunktsioon, nt:
-        * valesti tähe trükkimisel on tagajärg (nt mõjutab skoori, ekraan vilgub, vms)
-        * kasutaja saab ise valida raskusastme või teda huvitavad sõnad (sõnapikkuse vms järgi)
-        * eraldi on öörežiim (ingl *dark mode*)
+        Petrik- valesti tähe trükkimisel on tagajärg (nt mõjutab skoori, ekraan vilgub, vms)
+        Riho- eraldi on öörežiim (ingl *dark mode*)
+		* kasutaja saab ise valida raskusastme või teda huvitavad sõnad (sõnapikkuse vms järgi)
         * mängus on animatsioonid (nt tähed lendavad ära pärast trükkimist)

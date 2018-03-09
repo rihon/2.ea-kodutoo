@@ -14,8 +14,13 @@ const TYPER = function () {
   this.word = null
   this.wordMinLength = 5
   this.guessedWords = 0
+  this.level=1
+
+  this.length=0;
+  this.score=0;
 
   this.init()
+  
 }
 
 window.TYPER = TYPER
@@ -31,7 +36,12 @@ TYPER.prototype = {
     this.canvas.width = this.WIDTH * 2
     this.canvas.height = this.HEIGHT * 2
 
+	
+	this.scoreBoard()
     this.loadWords()
+	document.getElementById('saveScore').onclick=this.scoreSaving();
+	
+	
   },
 
   loadWords: function () {
@@ -67,8 +77,37 @@ TYPER.prototype = {
     this.word = new Word(wordFromArray, this.canvas, this.ctx)
   },
   
-  addScore: function (){
-	  document.getElementById("score").innerHTML="Läbi kirjutatud sõnade arv"+this.guessedWords;
+  scoreBoard: function (){
+	if(this.score==0){
+		this.score=1;
+	}else{
+		this.score+=5*this.level;
+	}
+	
+    document.getElementById("score").innerHTML="Läbi kirjutatud sõnade arv: "+this.guessedWords+"<br>"
+	+"Skoor: "+this.score+"<br>"
+	+"Level: "+this.level;
+  },
+  
+  scoreSaving: function(){
+	  //sessionStorage
+	  //localStorage
+	let names = [];
+	let scores = [];
+	
+
+	
+	
+	names=JSON.parse(sessionStorage.getItem("Nimi"));
+	scores=JSON.parse(sessionStorage.getItem("Score"));
+	this.length=names.length;
+	names[this.length] = document.getElementById("nameHTML");
+	scores[this.length]= this.score;
+	sessionStorage.setItem("Nimi", JSON.stringify(names));
+	sessionStorage.setItem("Score", JSON.stringify(scores));
+	
+	console.log(names);
+	console.log(scores);	
   },
 
   keyPressed: function (event) {
@@ -79,7 +118,11 @@ TYPER.prototype = {
 
       if (this.word.left.length === 0) {
         this.guessedWords += 1
-		this.addScore()
+		
+		if((this.guessedWords % 5) == 0){
+			this.level+= 1
+		}
+		this.scoreBoard()
 
         this.generateWord()
       }
@@ -131,4 +174,5 @@ function structureArrayByWordLength (words) {
 window.onload = function () {
   const typer = new TYPER()
   window.typer = typer
+  console.log(typer)
 }

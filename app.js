@@ -17,7 +17,7 @@ const TYPER = function () {
   this.level=1
 
   this.length=0;
-  this.score=0;
+  this.score=-5;
 
   this.init()
   
@@ -35,13 +35,21 @@ TYPER.prototype = {
 
     this.canvas.width = this.WIDTH * 2
     this.canvas.height = this.HEIGHT * 2
+    console.log(this.score)
+    document.getElementById('saveScore').onclick = function() {
+      //sessionStorage
+      //localStorage
+      console.log(typer.score)
+      console.log("Hakkan salvestama");
+      
+      typer.TestSave()
+      console.log("SALVESTATUD");
+  }
+  this.addScore()
+  this.loadWords()
 
-	
-	this.scoreBoard()
-    this.loadWords()
-	document.getElementById('saveScore').onclick=this.scoreSaving();
-	
-	
+  
+
   },
 
   loadWords: function () {
@@ -57,15 +65,33 @@ TYPER.prototype = {
         typer.start()
       }
     }
-
     xmlhttp.open('GET', './lemmad2013.txt', true)
     xmlhttp.send()
+  },
+
+  TestSave: function () {
+    
+    var array = JSON.parse(sessionStorage.getItem("scoreboard"));
+
+    arr = []
+    p1 = { name: document.getElementById('nameHTML').value, Score: this.score }
+    arr.push(p1)
+    array.push(p1)
+    
+    // teeb stringiks mida saab salvestada, seda võib salvestada localStorage'isse
+    localString = JSON.stringify(array)
+    sessionStorage.setItem("scoreboard", localString)
+
+    // lugemine
+    var TEST = JSON.parse(sessionStorage.getItem("scoreboard"));
+    console.log(TEST);
   },
 
   start: function () {
     this.generateWord()
     this.word.Draw()
 
+    
     window.addEventListener('keypress', this.keyPressed.bind(this))
   },
 
@@ -77,37 +103,13 @@ TYPER.prototype = {
     this.word = new Word(wordFromArray, this.canvas, this.ctx)
   },
   
-  scoreBoard: function (){
-	if(this.score==0){
-		this.score=1;
-	}else{
+  addScore: function (){
+	
 		this.score+=5*this.level;
-	}
 	
     document.getElementById("score").innerHTML="Läbi kirjutatud sõnade arv: "+this.guessedWords+"<br>"
 	+"Skoor: "+this.score+"<br>"
 	+"Level: "+this.level;
-  },
-  
-  scoreSaving: function(){
-	  //sessionStorage
-	  //localStorage
-	let names = [];
-	let scores = [];
-	
-
-	
-	
-	names=JSON.parse(sessionStorage.getItem("Nimi"));
-	scores=JSON.parse(sessionStorage.getItem("Score"));
-	this.length=names.length;
-	names[this.length] = document.getElementById("nameHTML");
-	scores[this.length]= this.score;
-	sessionStorage.setItem("Nimi", JSON.stringify(names));
-	sessionStorage.setItem("Score", JSON.stringify(scores));
-	
-	console.log(names);
-	console.log(scores);	
   },
 
   keyPressed: function (event) {
@@ -115,6 +117,7 @@ TYPER.prototype = {
 
     if (letter === this.word.left.charAt(0)) {
       this.word.removeFirstLetter()
+      this.addScore()
 
       if (this.word.left.length === 0) {
         this.guessedWords += 1
@@ -122,7 +125,7 @@ TYPER.prototype = {
 		if((this.guessedWords % 5) == 0){
 			this.level+= 1
 		}
-		this.scoreBoard()
+		this.addScore()
 
         this.generateWord()
       }

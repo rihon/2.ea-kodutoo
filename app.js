@@ -19,6 +19,7 @@ const TYPER = function () {
   this.length=0;
   this.score=-5;
   this.array = [];
+  this.darken = 1;
 
   this.init()
   
@@ -38,15 +39,16 @@ TYPER.prototype = {
     this.canvas.height = this.HEIGHT * 2
     console.log(this.score)
     document.getElementById('saveScore').onclick = function() {
-
-      console.log(typer.score)
       console.log("Hakkan salvestama");
-      
       typer.TestSave()
       console.log("SALVESTATUD");
   }
-  this.addScore()
-  this.loadWords()
+    this.addScore()
+    this.loadWords()
+    document.getElementById('darkButton').onclick = function(){
+      typer.changeBackBackgroundColor()
+    }
+
 
   
 
@@ -89,6 +91,33 @@ TYPER.prototype = {
     // lugemine
     var TEST = JSON.parse(localStorage.getItem("scoreboard"));
     console.log(TEST);
+  }
+},
+
+changeBackBackgroundColor: function(){
+  console.log('muudan värvi')
+  if(this.darken == 117){
+    console.log('White')
+    r = 255
+    g = 255
+    b = 255
+    document.body.style.backgroundColor = 'rgb('+ r +','+ g +','+ b +')'
+    r1 = 0
+    g1 = 0
+    b1 = 0
+    document.body.style.color = 'rgb('+ r1 +','+ g1 +','+ b1 +')'
+    this.darken = 255
+  }else{
+    console.log('Darken')
+    r = 100
+    g = 100
+    b = 100
+    document.body.style.backgroundColor = 'rgb('+ r +','+ g +','+ b +')'
+    r1 = 255
+    g1 = 255
+    b1 = 255
+    document.body.style.color = 'rgb('+ r1 +','+ g1 +','+ b1 +')'
+    this.darken = 117
   }
 },
 

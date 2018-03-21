@@ -18,6 +18,7 @@ const TYPER = function () {
 
   this.length=0;
   this.score=-5;
+  this.array = [];
 
   this.init()
   
@@ -37,8 +38,7 @@ TYPER.prototype = {
     this.canvas.height = this.HEIGHT * 2
     console.log(this.score)
     document.getElementById('saveScore').onclick = function() {
-      //sessionStorage
-      //localStorage
+
       console.log(typer.score)
       console.log("Hakkan salvestama");
       
@@ -70,22 +70,28 @@ TYPER.prototype = {
   },
 
   TestSave: function () {
-    
-    var array = JSON.parse(sessionStorage.getItem("scoreboard"));
 
-    arr = []
-    p1 = { name: document.getElementById('nameHTML').value, Score: this.score }
-    arr.push(p1)
-    array.push(p1)
-    
+    if (typeof image_array !== 'undefined' && image_array.length > 0) {
+      p1 = { Name: 'Placeholder', Score: -5}
+      this.array.push(p1)
+      localString = JSON.stringify(this.array)
+      localStorage.setItem("scoreboard", localString)
+      console.log(this.array)      
+  }else{
+    array = JSON.parse(localStorage.getItem("scoreboard"));
+    p1 = { Name: document.getElementById('nameHTML').value, Score: this.score }
+    this.array.push(p1)
     // teeb stringiks mida saab salvestada, seda võib salvestada localStorage'isse
-    localString = JSON.stringify(array)
-    sessionStorage.setItem("scoreboard", localString)
-
+    localString = JSON.stringify(this.array)
+    localStorage.setItem("scoreboard", localString)
+    //sessionStorage
+    //localStorage
     // lugemine
-    var TEST = JSON.parse(sessionStorage.getItem("scoreboard"));
+    var TEST = JSON.parse(localStorage.getItem("scoreboard"));
     console.log(TEST);
-  },
+  }
+},
+
 
   start: function () {
     this.generateWord()

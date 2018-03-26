@@ -146,6 +146,13 @@ changeBackBackgroundColor: function(){
 	+"Skoor: "+this.score+"<br>"
 	+"Level: "+this.level;
   },
+  
+  gameOver: function (){
+	  
+	   if (this.score<=0){
+		document.getElementById("score").innerHTML="MÄNG LÄBI!<br>";
+	   }
+  },
 
   keyPressed: function (event) {
     const letter = String.fromCharCode(event.which)
@@ -153,7 +160,7 @@ changeBackBackgroundColor: function(){
     if (letter === this.word.left.charAt(0)) {
       this.word.removeFirstLetter()
       this.addScore()
-
+	  
       if (this.word.left.length === 0) {
         this.guessedWords += 1
 		
@@ -163,10 +170,18 @@ changeBackBackgroundColor: function(){
 		this.addScore()
 
         this.generateWord()
+	  
+
       }
 
       this.word.Draw()
+    
+	}else{
+	  let penalty = 10;
+	  this.score = this.score-penalty;
+	  console.log()
     }
+	this.gameOver()
   }
 }
 

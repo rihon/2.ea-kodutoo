@@ -2,12 +2,6 @@
 
 Riho Noormets
 Petrik Sarri
-
-add
-commit
-fetch
-push
-
 ### Tähtpäev 26.03.2018 23:59
 
 ## Nõuded
@@ -30,3 +24,6 @@ push
 		
 		* kasutaja saab ise valida raskusastme või teda huvitavad sõnad (sõnapikkuse vms järgi)
         * mängus on animatsioonid (nt tähed lendavad ära pärast trükkimist)
+
+###
+![Joonis](Capture.png "Joonis rakenduse tööprotsessist")

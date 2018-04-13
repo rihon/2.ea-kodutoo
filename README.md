@@ -26,4 +26,4 @@ Petrik Sarri
         * mängus on animatsioonid (nt tähed lendavad ära pärast trükkimist)
 
 ###
-![Joonis](Capture.png "Joonis rakenduse tööprotsessist")
+![Joonis](Capture.PNG "Joonis rakenduse tööprotsessist")
